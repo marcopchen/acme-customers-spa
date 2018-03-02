@@ -2,7 +2,7 @@ const customerList = document.getElementById('customers-list');
 const createButton = document.getElementById('create-btn');
 const emailForm = document.getElementById('email');
 
-const addItem = (data) => {
+const addCustomer = (data) => {
   const item = document.createElement('li');
   item.append(data.name);
   item.addEventListener('click', () => {
@@ -28,7 +28,7 @@ createButton.addEventListener('click', (event) => {
       }
       res.json();
     })
-    .then(customer => addItem(customer))
+    .then(customer => addCustomer(customer))
     .catch(ex => {
       ex.then(err => {
         const message = document.getElementById('message');
@@ -40,6 +40,6 @@ createButton.addEventListener('click', (event) => {
 fetch('/api/customers')
   .then(res => res.json())
   .then(customers => {
-    customers.forEach(customer => addItem(customer));
+    customers.forEach(customer => addCustomer(customer));
   })
   .catch(console.error);
